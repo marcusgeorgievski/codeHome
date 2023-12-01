@@ -57,9 +57,9 @@ export default function Sidebar() {
 
 				<button
 					onClick={toggleSidebar}
-					className="bg-slate-200 md:px-1.5 py-0 rounded absolute md:-right-11 -top-2s  transition-all -right-14 px-2 "
+					className="bg-accent md:px-1.5 py-0 rounded absolute md:-right-11 -top-2s  transition-all -right-14 px-2 "
 				>
-					<ArrowRightLeftIcon className="w-3 text-slate-600" />
+					<ArrowRightLeftIcon className="w-3 text-muted-foreground" />
 				</button>
 
 				{/* HEADER */}
@@ -164,7 +164,14 @@ function SidebarFooter() {
 				GitHub
 			</SidebarItem>
 
-			<ThemeToggle />
+			<div
+				className={cn({
+					"-translate-x-3 md:translate-x-0 transition-transform":
+						!isOpen,
+				})}
+			>
+				<ThemeToggle />
+			</div>
 		</div>
 	);
 }
