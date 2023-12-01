@@ -13,8 +13,32 @@ import { CgPathIntersect } from "react-icons/cg";
 export default function Sidebar() {
 	const { isOpen, toggleSidebar } = useSidebar();
 
+	const sidebarRef = useRef<HTMLElement>(null);
+
+	// Close sidebar when clicking outside of it for small screens
+	useEffect(() => {
+		function handleClickOutside(e: any) {
+			if (
+				sidebarRef.current &&
+				!sidebarRef.current.contains(e.target) &&
+				window.innerWidth < 768
+			) {
+				toggleSidebar();
+			}
+		}
+
+		if (isOpen) {
+			document.addEventListener("mousedown", handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [isOpen, toggleSidebar]);
+
 	return (
 		<aside
+			ref={sidebarRef}
 			className={cn(
 				"fixed top-0 bottom-0  left-0 border-r transition-all z-40 py-4 bg-background",
 				{
@@ -101,6 +125,7 @@ import {
 	PiPathThin,
 } from "react-icons/pi";
 import SidebarProfile from "./sidebar-profile";
+import { useEffect, useRef } from "react";
 
 function SidebarMain() {
 	return (
@@ -124,8 +149,14 @@ function SidebarMain() {
 	);
 }
 function SidebarFooter() {
+	const { isOpen } = useSidebar();
+
 	return (
-		<>
+		<div
+			className={cn("flex flex-col gap-2", {
+				"overflow-hidden md:overflow-visible": !isOpen,
+			})}
+		>
 			<SidebarItem
 				icon={<FaGithub />}
 				href="https://github.com/marcusgeorgievski/codehome"
@@ -133,9 +164,7 @@ function SidebarFooter() {
 				GitHub
 			</SidebarItem>
 
-			<SidebarItem>
-				<ThemeToggle />
-			</SidebarItem>
-		</>
+			<ThemeToggle />
+		</div>
 	);
 }
