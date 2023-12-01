@@ -17,7 +17,7 @@ export default async function UserPage({
 	});
 
 	if (!user) {
-		throw new Error("User not found");
+		throw new Error("Page not found!");
 	}
 
 	return (

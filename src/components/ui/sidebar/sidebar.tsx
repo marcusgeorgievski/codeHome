@@ -96,42 +96,29 @@ import {
 	PiLockKeyOpenThin,
 	PiLockKeyThin,
 	PiQuotesThin,
-	PiUsersThin,
+	PiUsersFourThin,
+	PiBrainThin,
+	PiPathThin,
 } from "react-icons/pi";
 import SidebarProfile from "./sidebar-profile";
 
 function SidebarMain() {
 	return (
 		<>
-			<SidebarItem icon={<PiFadersThin />} href="/">
+			<SidebarItem icon={<PiPathThin />} href="/explore">
 				Explore
 			</SidebarItem>
-			<SidebarItem icon={<PiFolderNotchOpenThin />} href="/n">
+			<SidebarItem icon={<PiFolderNotchOpenThin />} href="/projects">
 				Projects
 			</SidebarItem>
-			<SidebarItem icon={<PiTextTLight />} href="a">
+			<SidebarItem icon={<PiTextTLight />} href="/blog">
 				Blog
 			</SidebarItem>
-			<SidebarItem icon={<PiFadersThin />} href="/c">
-				Settings
+			<SidebarItem icon={<PiUsersFourThin />} href="/users">
+				Users
 			</SidebarItem>
-			<SidebarItem icon={<PiFileDashedThin />} href="/c">
-				New Blog
-			</SidebarItem>
-			<SidebarItem icon={<PiLinkThin />} href="/c">
-				Link
-			</SidebarItem>
-			<SidebarItem icon={<PiLockKeyOpenThin />} href="/c">
-				Unlock
-			</SidebarItem>
-			<SidebarItem icon={<PiLockKeyThin />} href="/c">
-				Lock
-			</SidebarItem>
-			<SidebarItem icon={<PiQuotesThin />} href="/c">
-				Quote
-			</SidebarItem>
-			<SidebarItem icon={<PiUsersThin />} href="/c">
-				Peeps
+			<SidebarItem icon={<PiBrainThin />} href="/about">
+				About
 			</SidebarItem>
 		</>
 	);
