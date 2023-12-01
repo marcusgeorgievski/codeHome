@@ -22,7 +22,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
 			<div className="border-b h-14 flex items-center pl-12 justify-between pr-4">
 				<Breadcrumbs />
 
-				<div className="px-4 py-1.5 bg-yellow-200 text-sm text-yellow-900 font-medium flex items-center rounded border border-yellow-300">
+				<div className="px-4 py-1.5 pl-3 bg-yellow-200 text-sm text-yellow-900 font-medium flex items-center rounded border border-yellow-300">
 					<PiWarningThin className="mr-2" />
 					In development
 				</div>

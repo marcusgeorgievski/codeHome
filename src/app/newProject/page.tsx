@@ -1,9 +1,5 @@
 import Link from "next/link";
 
-interface NewProjectProps {
-	project?: any;
-}
-
 import {
 	Card,
 	CardContent,
@@ -14,7 +10,7 @@ import {
 } from "@/components/shadcn/ui/card";
 import { Button } from "@/components/shadcn/ui/button";
 
-export default function NewProject({ project = null }: NewProjectProps) {
+export default function NewProject({ project }: any) {
 	return (
 		<div className="p-4 max-w-4xl mx-auto">
 			<h1 className="mb-4 text-2xl font-bold">Create Project</h1>

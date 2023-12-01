@@ -31,8 +31,8 @@ const authOptions: NextAuthOptions = {
 
 			// Add username + id from db to client session
 			if (dbUser) {
-				session.user.username = dbUser?.username;
-				session.user.id = dbUser?.id;
+				session.user.username = dbUser.username!;
+				session.user.id = dbUser.id;
 			}
 
 			return session;

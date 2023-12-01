@@ -16,7 +16,6 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
 	title: "codeHome",
 	description: "",
-	viewport,
 };
 
 export default function RootLayout({

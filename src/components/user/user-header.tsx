@@ -17,17 +17,17 @@ export default function UserHeader({ user }: any) {
 		<div className="flex flex-col">
 			<div className="flex gap-4 pb-4">
 				<Image
-					src={user.image}
+					src={user?.image}
 					alt="Picture of the author"
 					height={80}
 					width={80}
 					className="rounded-lg"
 				/>
 				<div className="flex flex-col justify-end">
-					<p className="font-medium text-xl">{user.name}</p>
+					<p className="font-medium text-xl">{user?.name}</p>
 					<p className="text-muted-foreground">
 						<span>@</span>
-						{user.username}
+						{user?.username}
 					</p>
 				</div>
 			</div>
