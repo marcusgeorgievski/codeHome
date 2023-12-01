@@ -19,24 +19,23 @@ const authOptions: NextAuthOptions = {
 		signIn: "/auth/signin",
 	},
 	callbacks: {
-		async session(n) {
+		async session({ session }) {
 			// Send properties to the client, like an access_token and user id from a provider.
 
-			// if (!session || !session.user) return session;
+			if (!session || !session.user) return session;
 
-			// // Fetch user from db
-			// const dbUser = await prisma.user.findUnique({
-			// 	where: { email: session.user?.email! },
-			// });
+			// Fetch user from db
+			const dbUser = await prisma.user.findUnique({
+				where: { email: session.user?.email! },
+			});
 
-			// // Add username + id from db to client session
-			// if (dbUser) {
-			// 	session.user.username = dbUser?.username;
-			// 	session.user.id = dbUser?.id;
-			// }
-			// console.log(n);
+			// Add username + id from db to client session
+			if (dbUser) {
+				session.user.username = dbUser?.username;
+				session.user.id = dbUser?.id;
+			}
 
-			return n.session;
+			return session;
 		},
 	},
 };

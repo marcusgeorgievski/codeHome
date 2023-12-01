@@ -57,7 +57,7 @@ export function SidebarItem({ icon, href, children }: SidebarItemProps) {
 				className={cn("font-medium transition-all whitespace-nowrap", {
 					"group-hover:bg-primary/10 px-2 rounded":
 						!isOpen && pathname.endsWith(href),
-					"group-hover:bg-accent/60 px-2 rounded":
+					"group-hover:bg-accent/90 px-2 rounded":
 						!isOpen && !pathname.endsWith(href),
 				})}
 			>

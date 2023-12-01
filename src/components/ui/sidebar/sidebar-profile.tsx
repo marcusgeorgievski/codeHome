@@ -1,12 +1,12 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { PiUserFocusThin } from "react-icons/pi";
 import { useSession } from "next-auth/react";
 import { useSidebar } from "@/state/store";
 import { signIn } from "next-auth/react";
 import { ProfileDropdown } from "./profile-dropdown";
-import { PiSpinnerLight } from "react-icons/pi";
 import { SidebarItem } from "./sidebar-item";
+import { PiUserFocusThin } from "react-icons/pi";
+import { PiSpinnerLight } from "react-icons/pi";
 
 export default function SidebarProfile() {
 	const { status } = useSession();
@@ -36,7 +36,7 @@ function SidebarLogin() {
 		<div
 			onClick={() => signIn()}
 			className={cn(
-				"flex items-center gap-4  px-1 py-1 transition-all rounded-md  font-semibold",
+				"flex items-center gap-4  px-1.5 py-1 transition-all rounded-md  font-semibold",
 				"overflow-hidden hover:overflow-visible  transition-all group flex-grow-0 hover:bg-accent cursor-pointer"
 			)}
 		>

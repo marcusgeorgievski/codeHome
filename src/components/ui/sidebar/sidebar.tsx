@@ -33,16 +33,10 @@ export default function Sidebar() {
 
 				<button
 					onClick={toggleSidebar}
-					className="bg-foreground/10 md:px-1 py-0 rounded absolute md:-right-10 -top-2s  transition-all -right-14 px-2 "
+					className="bg-slate-200 md:px-1.5 py-0 rounded absolute md:-right-11 -top-2s  transition-all -right-14 px-2 "
 				>
 					<ArrowRightLeftIcon className="w-3 text-slate-600" />
 				</button>
-				{/* <button
-					onClick={toggleSidebar}
-					className="w-5 h-5 rounded-full flex items-center justify-center  absolute -right-[23px] -top-2 border bg-background"
-				>
-					<ArrowRightLeftIcon className="w-3 text-slate-600" />
-				</button> */}
 
 				{/* HEADER */}
 
@@ -109,10 +103,10 @@ import SidebarProfile from "./sidebar-profile";
 function SidebarMain() {
 	return (
 		<>
-			<SidebarItem icon={<PiFadersThin />} href="/c">
+			<SidebarItem icon={<PiFadersThin />} href="/">
 				Explore
 			</SidebarItem>
-			<SidebarItem icon={<PiFolderNotchOpenThin />} href="/">
+			<SidebarItem icon={<PiFolderNotchOpenThin />} href="/n">
 				Projects
 			</SidebarItem>
 			<SidebarItem icon={<PiTextTLight />} href="a">

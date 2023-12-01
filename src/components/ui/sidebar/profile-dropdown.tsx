@@ -1,20 +1,5 @@
 "use client";
-import {
-	Cloud,
-	CreditCard,
-	Github,
-	Keyboard,
-	LifeBuoy,
-	LogOut,
-	Mail,
-	MessageSquare,
-	Plus,
-	PlusCircle,
-	Settings,
-	User,
-	UserPlus,
-	Users,
-} from "lucide-react";
+import { LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
@@ -25,21 +10,18 @@ import {
 	DropdownMenuGroup,
 	DropdownMenuItem,
 	DropdownMenuLabel,
-	DropdownMenuPortal,
 	DropdownMenuSeparator,
-	DropdownMenuShortcut,
-	DropdownMenuSub,
-	DropdownMenuSubContent,
-	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from "@/components/shadcn/ui/dropdown-menu";
 import SidebarProfile from "./sidebar-profile";
-import { PiUserFocusThin } from "react-icons/pi";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/state/store";
+import Link from "next/link";
 
 export function ProfileDropdown() {
+	const { data: session } = useSession();
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -47,72 +29,92 @@ export function ProfileDropdown() {
 					<SidebarCard />
 				</div>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent className="w-56" align="start" side="left">
+			<DropdownMenuContent className="w-44" align="start" side="left">
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
-					<DropdownMenuItem>
-						<User className="mr-2 h-4 w-4" />
-						<span>Dashboard</span>
-						<DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+					<DropdownMenuItem asChild>
+						<Link
+							href="/dashboard"
+							className="flex items-center justify-between w-full "
+						>
+							<div className="flex items-center">
+								<PiUserFocusThin className="mr-2 h-4 w-4" />
+								<span>Dashboard</span>
+							</div>
+						</Link>
 					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<CreditCard className="mr-2 h-4 w-4" />
-						<span>Billing</span>
-						<DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+					<DropdownMenuItem asChild>
+						<Link
+							href={{
+								pathname: `/${session?.user.username}`,
+								query: { tab: "projects" },
+							}}
+							className="flex items-center justify-between w-full"
+						>
+							<div className="flex items-center">
+								<PiFolderNotchOpenThin className="mr-2 h-4 w-4" />
+								<span>My Projects</span>
+							</div>
+						</Link>
 					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<Settings className="mr-2 h-4 w-4" />
-						<span>Settings</span>
-						<DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<Keyboard className="mr-2 h-4 w-4" />
-						<span>Keyboard shortcuts</span>
-						<DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-					</DropdownMenuItem>
-				</DropdownMenuGroup>
-				<DropdownMenuSeparator />
-				<DropdownMenuGroup>
-					<DropdownMenuItem>
-						<Users className="mr-2 h-4 w-4" />
-						<span>Team</span>
-					</DropdownMenuItem>
-					<DropdownMenuSub>
-						<DropdownMenuSubTrigger>
-							<UserPlus className="mr-2 h-4 w-4" />
-							<span>Invite users</span>
-						</DropdownMenuSubTrigger>
-						<DropdownMenuPortal>
-							<DropdownMenuSubContent>
-								<DropdownMenuItem>
-									<Mail className="mr-2 h-4 w-4" />
-									<span>Email</span>
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<MessageSquare className="mr-2 h-4 w-4" />
-									<span>Message</span>
-								</DropdownMenuItem>
-								<DropdownMenuSeparator />
-								<DropdownMenuItem>
-									<PlusCircle className="mr-2 h-4 w-4" />
-									<span>More...</span>
-								</DropdownMenuItem>
-							</DropdownMenuSubContent>
-						</DropdownMenuPortal>
-					</DropdownMenuSub>
-					<DropdownMenuItem>
-						<Plus className="mr-2 h-4 w-4" />
-						<span>New Team</span>
-						<DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+					<DropdownMenuItem asChild>
+						<Link
+							href="/blog"
+							className="flex items-center justify-between w-full"
+						>
+							<div className="flex items-center">
+								<PiTextTLight className="mr-2 h-4 w-4" />
+								<span>My Blog</span>
+							</div>
+						</Link>
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 
 				<DropdownMenuSeparator />
-				<DropdownMenuItem>
-					<LogOut className="mr-2 h-4 w-4" />
-					<button onClick={() => signOut()}>Log out</button>
-					<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+
+				<DropdownMenuGroup>
+					<DropdownMenuItem asChild>
+						<Link
+							href="/social"
+							className="flex items-center justify-between w-full"
+						>
+							<div className="flex items-center">
+								<PiGraphThin className="mr-2 h-4 w-4" />
+								<span>Social</span>
+							</div>
+						</Link>
+					</DropdownMenuItem>
+					<DropdownMenuItem asChild>
+						<Link
+							href="/friends"
+							className="flex items-center justify-between w-full"
+						>
+							<div className="flex items-center">
+								<PiUsersThin className="mr-2 h-4 w-4" />
+								<span>Friends</span>
+							</div>
+						</Link>
+					</DropdownMenuItem>
+				</DropdownMenuGroup>
+
+				<DropdownMenuSeparator />
+				<DropdownMenuItem asChild>
+					<Link
+						href="/settings"
+						className="flex items-center justify-between w-full"
+					>
+						<div className="flex items-center">
+							<PiFadersThin className="mr-2 h-4 w-4" />
+							Settings
+						</div>
+					</Link>
+				</DropdownMenuItem>
+				<DropdownMenuItem asChild>
+					<button onClick={() => signOut()} className="w-full">
+						<LogOut className="mr-2 h-4 w-4" />
+						Log out
+					</button>
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
@@ -165,3 +167,12 @@ export default function SidebarCard() {
 		</div>
 	);
 }
+
+import {
+	PiFolderNotchOpenThin,
+	PiTextTLight,
+	PiUserFocusThin,
+	PiUsersThin,
+	PiGraphThin,
+	PiFadersThin,
+} from "react-icons/pi";

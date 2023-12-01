@@ -2,6 +2,7 @@
 import { useSidebar } from "@/state/store";
 import { cn } from "@/lib/utils";
 import Breadcrumbs from "./ui/breadcrumbs";
+import { Input } from "./shadcn/ui/input";
 
 interface MainLayoutProps {
 	children: React.ReactNode;
@@ -18,7 +19,6 @@ export default function MainLayout({ children }: MainLayoutProps) {
 		>
 			<div className="border-b h-14 flex items-center pl-12 justify-between pr-4">
 				<Breadcrumbs />
-				<>hi</>
 			</div>
 			{children}
 		</div>
