@@ -15,17 +15,37 @@ export const useSidebar = create<SidebarState>((set) => ({
 	toggleSidebar: () => set((state) => ({ isOpen: !state.isOpen })),
 }));
 
-// export const useSidebar = create(
-// 	persist<SidebarState>(
-// 		(set, get) => ({
-// 			isOpen: true,
-// 			openSidebar: () => set({ isOpen: true }),
-// 			closeSidebar: () => set({ isOpen: false }),
-// 			toggleSidebar: () => set({ isOpen: !get().isOpen }),
-// 		}),
-// 		{
-// 			name: "sidebar-storage",
-// 			storage: createJSONStorage(() => localStorage),
-// 		}
-// 	)
-// );
+type RouteHistoryState = {
+	routeHistory: string[];
+	addRoute: (route: string) => void;
+	getRoute: (i: number) => string;
+
+	position: number;
+	goBack: () => void;
+	goForward: () => void;
+	resetPosition: () => void;
+};
+
+export const useRouteHistory = create<RouteHistoryState>((set, get) => ({
+	routeHistory: [],
+	addRoute: (route) =>
+		set((state) => ({
+			routeHistory: [route, ...state.routeHistory],
+			position: state.position + 1,
+		})),
+	getRoute: (i) => get().routeHistory[i],
+
+	position: 0,
+	goBack: () =>
+		set({
+			position: get().position - 1,
+		}),
+	goForward: () =>
+		set({
+			position: get().position + 1,
+		}),
+	resetPosition: () =>
+		set((state) => ({
+			position: state.routeHistory.length - 1,
+		})),
+}));
