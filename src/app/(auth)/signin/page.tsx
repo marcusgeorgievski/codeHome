@@ -8,7 +8,7 @@ import {
     CardTitle,
 } from "@/components/shadcn/ui/card"
 import { AiFillGithub } from "react-icons/ai"
-import useAuth from "@/lib/user"
+import useAuth from "@/lib/auth-hook"
 
 export default function SignInPage() {
     const { username, signIn, statusRedirect } = useAuth()

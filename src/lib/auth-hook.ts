@@ -2,6 +2,7 @@
 
 import { useSession, signIn, signOut } from "next-auth/react"
 import { usePathname, useRouter, redirect } from "next/navigation"
+import prisma from "./prisma"
 
 export default function useAuth() {
     const pathname = usePathname()
@@ -27,9 +28,7 @@ export default function useAuth() {
     }
 
     // If a user is on their own page, return true
-    function self() {
-        return pathname.split("/")[2] === username
-    }
+    const self = pathname.split("/")[1] === username
 
     function statusRedirect(statusType: string, path: string) {
         if (status === statusType) {

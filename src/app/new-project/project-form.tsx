@@ -2,38 +2,27 @@
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import useAuth from "@/lib/user"
 
 const formSchema = z.object({
     name: z.string().min(1).max(50),
     description: z.string().min(0).max(300),
-    status: z.boolean(),
-    private: z.boolean(),
+    // status: z.boolean(),
+    // private: z.boolean(),
 })
 
-export default function NewProject({ project }: any) {
-    const { loading, unauthenticated, toSignIn } = useAuth()
-
+export default function ProjectForm({ project, onSubmit }: any) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: project?.name || "",
             description: project?.description || "",
-            status: project?.status || "inProgress",
-            private: project?.private || false,
+            // status: project?.status || "inProgress",
+            // private: project?.private || false,
         },
     })
 
-    if (loading) return "Loading..."
-    if (unauthenticated) toSignIn()
-
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
-    }
-
     return (
         <div className="p-4 max-w-4xl mx-auto">
-            <h1 className="mb-4 text-2xl font-bold">Create Project</h1>
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -41,8 +30,10 @@ export default function NewProject({ project }: any) {
                 >
                     <Card>
                         <CardHeader>
-                            <CardTitle>Card Title</CardTitle>
-                            <CardDescription>Card Description</CardDescription>
+                            <CardTitle>Create Project</CardTitle>
+                            <CardDescription>
+                                Add a new project to your collection
+                            </CardDescription>
                         </CardHeader>
                         <CardContent>
                             <FormInput form={form} name="name" label="Name" />
@@ -51,7 +42,7 @@ export default function NewProject({ project }: any) {
                                 name="description"
                                 label="Description"
                             />
-                            <FormSelect
+                            {/* <FormSelect
                                 form={form}
                                 name="status"
                                 label="Status"
@@ -62,7 +53,7 @@ export default function NewProject({ project }: any) {
                                     },
                                     { value: "complete", label: "Complete" },
                                 ]}
-                            />
+                            /> */}
                         </CardContent>
                         <CardFooter className="justify-end">
                             <Button

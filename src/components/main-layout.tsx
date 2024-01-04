@@ -56,7 +56,7 @@ function RouteHistoryDropdown() {
                 ? "?" + searchParams.toString()
                 : "")
         addRoute(fullPath)
-    }, [pathname, searchParams])
+    }, [pathname, searchParams, addRoute])
 
     return (
         <DropdownMenu>

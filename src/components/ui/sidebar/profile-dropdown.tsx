@@ -20,7 +20,7 @@ import { useSidebar } from "@/state/store"
 import Link from "next/link"
 
 export function ProfileDropdown() {
-    const { data } = useSession()
+    const { username } = useAuth()
 
     return (
         <DropdownMenu>
@@ -35,7 +35,7 @@ export function ProfileDropdown() {
                 <DropdownMenuGroup>
                     <DropdownMenuItem asChild>
                         <Link
-                            href={`/${data?.user.username}`}
+                            href={`/${username}`}
                             className="flex items-center justify-between w-full "
                         >
                             <div className="flex items-center">
@@ -76,7 +76,7 @@ export function ProfileDropdown() {
                 {/* <DropdownMenuSeparator /> */}
                 <DropdownMenuItem asChild>
                     <Link
-                        href="/settings"
+                        href={`/${username}/settings`}
                         className="flex items-center justify-between w-full"
                     >
                         <div className="flex items-center">
@@ -151,3 +151,4 @@ import {
     PiGraphThin,
     PiFadersThin,
 } from "react-icons/pi"
+import useAuth from "@/lib/auth-hook"

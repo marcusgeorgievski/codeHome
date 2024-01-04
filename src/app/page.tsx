@@ -1,7 +1,7 @@
 "use client"
 
 import CodeHome from "@/components/ui/codehome"
-import useAuth from "@/lib/user"
+import useAuth from "@/lib/auth-hook"
 import Link from "next/link"
 import { AiFillGithub } from "react-icons/ai"
 

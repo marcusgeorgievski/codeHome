@@ -1,23 +1,29 @@
 "use client"
 import Link from "next/link"
-import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import useAuth from "@/lib/auth-hook"
+import { UserSettings } from "./user-settings"
+import { getUser, updateUser } from "@/lib/users"
 
 interface SettingPageProps {
     //children: React.ReactNode;
 }
 
 export default function SettingPage({ params: { username } }: any) {
-    const { data, status } = useSession()
+    const { status, id } = useAuth()
     const router = useRouter()
 
     if (status === "loading") {
         return <>Loading</>
     }
 
-    if (status !== "authenticated" || username !== data?.user.username) {
+    if (status !== "authenticated" || username !== username) {
         router.back()
-        console.log(data?.user.username, username)
     }
-    return <>settings</>
+
+    return (
+        <div className="max-w-lg mx-auto">
+            <UserSettings />
+        </div>
+    )
 }

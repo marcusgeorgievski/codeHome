@@ -3,7 +3,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
-import { useSession } from "next-auth/react"
 
 import {
     PiFolderNotchOpenThin,
@@ -11,11 +10,11 @@ import {
     PiUserFocusThin,
     PiGearThin,
 } from "react-icons/pi"
+import useAuth from "@/lib/auth-hook"
 
 export default function UserTabs({ username }: { username: string }) {
     const [tab, setTab] = useState("")
-
-    const { data, status } = useSession()
+    const { self } = useAuth()
 
     const pathname = usePathname()
 
@@ -61,27 +60,29 @@ export default function UserTabs({ username }: { username: string }) {
                     {item.name}
                 </Link>
             ))}
-            <Link
-                href={`/${username}/settings`}
-                key={"settings"}
-                onClick={() => handleTab("settings")}
-                className={cn(
-                    "flex items-center justify-center rounded gap-2 md:px-6 py-1  text-center text-[0.9rem] font-medium flex-1 md:flex-none text-muted-foreground",
-                    {
-                        "bg-primary/10 text-primary border-primary ":
-                            tab === "settings",
-                    },
-                    {
-                        "hover:bg-accent/70 hover:text-foreground":
-                            tab !== "settings",
-                    }
-                )}
-            >
-                <span>
-                    <PiGearThin />
-                </span>
-                Settings
-            </Link>
+            {self && (
+                <Link
+                    href={`/${username}/settings`}
+                    key={"settings"}
+                    onClick={() => handleTab("settings")}
+                    className={cn(
+                        "flex items-center justify-center rounded gap-2 md:px-6 py-1  text-center text-[0.9rem] font-medium flex-1 md:flex-none text-muted-foreground",
+                        {
+                            "bg-primary/10 text-primary border-primary ":
+                                tab === "settings",
+                        },
+                        {
+                            "hover:bg-accent/70 hover:text-foreground":
+                                tab !== "settings",
+                        }
+                    )}
+                >
+                    <span>
+                        <PiGearThin />
+                    </span>
+                    Settings
+                </Link>
+            )}
         </div>
     )
 }

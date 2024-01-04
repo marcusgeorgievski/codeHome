@@ -37,7 +37,7 @@ export function SidebarItem({ icon, href, children }: SidebarItemProps) {
                         "font-medium transition-all whitespace-nowrap",
                         {
                             "group-hover:bg-primary/10 px-2 rounded":
-                                isOpen &&
+                                !isOpen &&
                                 pathname.endsWith(href) &&
                                 href !== "/signin",
                             "group-hover:bg-accent/90 px-2 rounded":
