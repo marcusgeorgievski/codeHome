@@ -1,19 +1,24 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+
+// Sidebar state
 
 type SidebarState = {
 	isOpen: boolean;
 	openSidebar: () => void;
 	closeSidebar: () => void;
 	toggleSidebar: () => void;
+	setSidebar: (state: boolean) => void;
 };
 
-export const useSidebar = create<SidebarState>((set) => ({
+export const useSidebar = create<SidebarState>((set, get) => ({
 	isOpen: false,
 	openSidebar: () => set({ isOpen: true }),
 	closeSidebar: () => set({ isOpen: false }),
-	toggleSidebar: () => set((state) => ({ isOpen: !state.isOpen })),
+	toggleSidebar: () => set({ isOpen: !get().isOpen }),
+	setSidebar: (state) => set({ isOpen: state }),
 }));
+
+// Route History
 
 type RouteHistoryState = {
 	routeHistory: string[];

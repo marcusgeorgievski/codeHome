@@ -5,5 +5,5 @@ interface UserLikesPageProps {
 }
 
 export default function UserLikesPage() {
-	return <></>;
+	return <>my likes</>;
 }

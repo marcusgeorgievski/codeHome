@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from "next/link"
 
 interface BlogPageProps {
-	//children: React.ReactNode;
+    //children: React.ReactNode;
 }
 
 export default function BlogPage() {
-	return <></>;
+    return <>blogs</>
 }

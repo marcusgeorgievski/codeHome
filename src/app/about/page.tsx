@@ -1,9 +1,9 @@
-import Link from "next/link";
-
-interface AboutPageProps {
-	//children: React.ReactNode;
-}
-
 export default function AboutPage() {
-	return <></>;
+	return (
+		<div className="p-4 max-w-4xl mx-auto">
+			<p className="text-center text-muted-foreground">
+				In development, Full-stack platform project
+			</p>
+		</div>
+	);
 }

@@ -5,5 +5,5 @@ interface UserBlogPageProps {
 }
 
 export default function UserBlogPage() {
-	return <></>;
+	return <>my likes</>;
 }

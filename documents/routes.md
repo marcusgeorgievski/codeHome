@@ -1,7 +1,14 @@
 ```
-/ (Homepage)
+/
+/about
+/auth
+    /login
+/blog
+/dashboard
+/explore
+/projects
+/users
 
-/login (Login page)
 
 /signup (Signup page)
 

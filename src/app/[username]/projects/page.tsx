@@ -5,5 +5,5 @@ interface UserProjectPageProps {
 }
 
 export default function UserProjectPage() {
-	return <></>;
+	return <>projects</>;
 }

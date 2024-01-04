@@ -5,5 +5,5 @@ interface UserPageProps {
 }
 
 export default function UserPage() {
-	return <></>;
+	return <>profile</>;
 }

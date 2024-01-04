@@ -5,5 +5,5 @@ interface ExplorePageProps {
 }
 
 export default function ExplorePage() {
-	return <></>;
+	return <>explore</>;
 }

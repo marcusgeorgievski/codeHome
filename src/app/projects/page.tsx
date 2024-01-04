@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from "next/link"
 
 interface ProjectsPageProps {
-	//children: React.ReactNode;
+    //children: React.ReactNode;
 }
 
 export default function ProjectsPage() {
-	return <></>;
+    return <>projects</>
 }
