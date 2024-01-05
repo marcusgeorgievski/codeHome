@@ -15,9 +15,7 @@ import { Textarea } from "@/components/shadcn/ui/textarea"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { getUser, updateUser } from "@/lib/users"
-import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+
 import useAuth from "@/lib/auth-hook"
 
 const formSchema = z.object({
@@ -28,8 +26,6 @@ const formSchema = z.object({
 })
 // { user }: { user: any }
 export function UserSettings() {
-    const { id } = useAuth()
-
     let user: any = "null"
 
     // 1. Define your form.
@@ -42,10 +38,6 @@ export function UserSettings() {
             bio: user?.bio || "",
         },
     })
-
-    if (!user) {
-        return <>Loading...</>
-    }
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)

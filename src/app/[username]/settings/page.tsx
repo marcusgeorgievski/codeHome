@@ -1,29 +1,16 @@
-"use client"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import useAuth from "@/lib/auth-hook"
+import prisma from "@/lib/prisma"
 import { UserSettings } from "./user-settings"
-import { getUser, updateUser } from "@/lib/users"
 
-interface SettingPageProps {
-    //children: React.ReactNode;
+interface Props {
+    params: {
+        username: string
+    }
 }
 
-export default function SettingPage({ params: { username } }: any) {
-    const { status, id } = useAuth()
-    const router = useRouter()
-
-    if (status === "loading") {
-        return <>Loading</>
-    }
-
-    if (status !== "authenticated" || username !== username) {
-        router.back()
-    }
-
+export default async function SettingPage({ params: { username } }: Props) {
     return (
         <div className="max-w-lg mx-auto">
-            <UserSettings />
+            {/* <UserSettings user={user} /> */}
         </div>
     )
 }
